@@ -236,8 +236,6 @@ class GenerateTokenRequest extends AbstractRequest
             $hostedPaymentData->customerExists = 0;            
         }
 
-        //$hostedPaymentData->paymentKey = '98117df6-712e-4d2a-b5cf-f23dd8cfede3';
-
         $hostedPaymentData->customerEmail = $this->getCustomerEmail();
         $hostedPaymentData->customerPhoneMobile = $this->getCustomerPhoneMobile();
         $hostedPaymentData->addressesMatch = false;
