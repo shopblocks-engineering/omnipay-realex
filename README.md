@@ -16,8 +16,18 @@ to your `composer.json` file:
 
 ```json
 {
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/CJMillard/omnipay-realex.git"
+        }
+    ]
+}
+
+```json
+
     "require": {
-        "digitickets/omnipay-realex": "~5.0"
+        "cjmillard/omnipay-realex": "*"
     }
 }
 ```
