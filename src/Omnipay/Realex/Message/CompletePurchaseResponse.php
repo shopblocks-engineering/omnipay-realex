@@ -27,4 +27,9 @@ class CompletePurchaseResponse extends AbstractRequest
     {
         return $this->data->responseCode == "00";
     }
+
+    public function getMessage()
+    {
+        return $this->data->responseMessage;
+    }
 }
