@@ -383,4 +383,9 @@ class RemoteGateway extends AbstractGateway
     {
         return $this->createRequest('\Omnipay\Realex\Message\GenerateTokenRequest', $parameters);
     }
+
+    public function completeGeneratePaymentToken(array $parameters = array())
+    {
+        return $this->completePurchase($parameters);
+    }
 }
