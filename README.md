@@ -25,7 +25,7 @@ to your `composer.json` file:
 }
 
 ```json
-
+{
     "require": {
         "cjmillard/omnipay-realex": "*"
     }
