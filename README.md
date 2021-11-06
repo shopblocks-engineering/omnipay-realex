@@ -23,6 +23,7 @@ to your `composer.json` file:
         }
     ]
 }
+```
 
 ```json
 {
