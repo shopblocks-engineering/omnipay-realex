@@ -19,7 +19,7 @@ to your `composer.json` file:
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/CJMillard/omnipay-realex.git"
+            "url": "https://github.com/shopblocks-engineering/omnipay-realex.git"
         }
     ]
 }
@@ -28,7 +28,7 @@ to your `composer.json` file:
 ```json
 {
     "require": {
-        "cjmillard/omnipay-realex": "*"
+        "shopblocks-engineering/omnipay-realex": "*"
     }
 }
 ```
