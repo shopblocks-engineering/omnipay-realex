@@ -22,4 +22,19 @@ class GenerateTokenResponse extends AbstractRequest
     {
 
     }
+
+    public function isRedirect()
+    {
+        return true;
+    }
+
+    public function getRedirectMethod()
+    {
+        return 'INSTANCE';
+    }
+
+    public function isSuccessful()
+    {
+        return !isset($this->data['error']);
+    }
 }

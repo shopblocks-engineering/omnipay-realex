@@ -1,5 +1,5 @@
 {
-    "name": "digitickets/omnipay-realex",
+    "name": "shopblocks-engineering/omnipay-realex",
     "type": "library",
     "description": "Realex driver with 3D Secure & refund support for Omnipay payment processing library",
     "keywords": [
@@ -11,12 +11,12 @@
         "purchase",
         "realex"
     ],
-    "homepage": "https://github.com/digitickets/omnipay-realex",
+    "homepage": "https://github.com/shopblocks-engineering/omnipay-realex",
     "license": "MIT",
     "authors": [
         {
-            "name": "Andrew Coates",
-            "email": "andycoatz@gmail.com"
+            "name": "Shopblocks",
+            "email": "support@shopblocks.com"
         }
     ],
     "autoload": {
