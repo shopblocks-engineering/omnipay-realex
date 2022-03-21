@@ -11,7 +11,7 @@ processing library for PHP 5.3+. This package implements Realex (Remote MPI) int
 
 ## Installation
 
-The realex driver is installed via [Composer](http://getcomposer.org/). To install, simply add it
+The Realex driver is installed via [Composer](http://getcomposer.org/). To install, simply add it
 to your `composer.json` file:
 
 ```json
