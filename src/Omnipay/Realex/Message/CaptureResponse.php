@@ -4,7 +4,7 @@ namespace Omnipay\Realex\Message;
 
 use Omnipay\Common\Message\AbstractRequest;
 
-class GenerateAuthorizeTokenResponse extends AbstractRequest
+class CaptureResponse extends AbstractRequest
 {
     private $data;
 
@@ -18,21 +18,11 @@ class GenerateAuthorizeTokenResponse extends AbstractRequest
         return $this->data;
     }
 
-    public function sendData($data)
-    {
-
-    }
-
     public function isRedirect()
     {
-        return true;
+        return false;
+    
     }
-
-    public function getRedirectMethod()
-    {
-        return 'INSTANCE';
-    }
-
     public function isSuccessful()
     {
         return !isset($this->data['error']);

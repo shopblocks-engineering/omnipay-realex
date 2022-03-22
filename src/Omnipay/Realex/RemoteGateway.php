@@ -8,7 +8,7 @@ use Omnipay\Realex\Message\AuthResponse;
 use Omnipay\Realex\Message\RemoteAbstractResponse;
 use Omnipay\Realex\Message\VerifySigRequest;
 use Omnipay\Realex\Message\VerifySigResponse;
-use Omnipay\Realex\Trais\GatewayParameters;
+use Omnipay\Realex\Traits\GatewayParameters;
 use Carbon\Carbon;
 
 /**
@@ -42,7 +42,7 @@ class RemoteGateway extends AbstractGateway
 
     public function capture(array $parameters = array())
     {
-        return $this->completePurchase($parameters);
+        return $this->createRequest('\Omnipay\Realex\Message\CaptureRequest', $parameters);
     }
 
     public function refund(array $parameters = array())
@@ -99,6 +99,11 @@ class RemoteGateway extends AbstractGateway
     }
 
     public function completeGeneratePaymentToken(array $parameters = array())
+    {
+        return $this->completePurchase($parameters);
+    }
+    
+    public function completeAuthorize(array $parameters = array())
     {
         return $this->completePurchase($parameters);
     }

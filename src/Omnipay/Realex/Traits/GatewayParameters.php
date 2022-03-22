@@ -4,6 +4,16 @@ namespace Omnipay\Realex\Traits;
 
 trait GatewayParameters
 {
+    public function setCustomerReference($value)
+    {
+        $this->setParameter('customerReference', $value);
+    }
+
+    public function getCustomerReference()
+    {
+        return $this->getParameter('customerReference');
+    }
+    
     public function getName()
     {
         return 'Realex Remote';
@@ -217,6 +227,16 @@ trait GatewayParameters
     {
         return $this->getParameter('response_json');
     }
+    
+    public function setOrderId($value)
+    {
+        $this->setParameter('orderId', $value);
+    }
+
+    public function getOrderId()
+    {
+        return $this->getParameter('orderId');
+    }
 
     public function setTestMode($value)
     {
@@ -226,5 +246,15 @@ trait GatewayParameters
     public function getTestMode()
     {
         return $this->getParameter('test_mode');
-    }    
+    }  
+    
+    public function getPaymentReference()
+    {
+        return $this->getParameter('payment_reference');
+    }  
+    
+    public function setPaymentReference($value)
+    {
+        $this->setParameter('payment_reference', $value);
+    }  
 }
