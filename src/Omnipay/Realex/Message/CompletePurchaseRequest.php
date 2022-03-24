@@ -3,7 +3,7 @@
 namespace Omnipay\Realex\Message;
 
 use Omnipay\Common\Message\AbstractRequest;
-use GlobalPayments\Api\ServicesConfig;
+use GlobalPayments\Api\ServiceConfigs\Gateways\GpEcomConfig;
 use GlobalPayments\Api\Services\HostedService;
 use GlobalPayments\Api\HostedPaymentConfig;
 use Omnipay\Realex\Traits\GatewayParameters;
@@ -17,7 +17,7 @@ class CompletePurchaseRequest extends AbstractRequest
 
     public function getData()
     {
-        $config = new ServicesConfig();
+        $config = new GpEcomConfig();
         $config->merchantId = $this->getMerchantId();
         $config->accountId = $this->getAccount();
         $config->sharedSecret = $this->getSecret();
@@ -36,9 +36,6 @@ class CompletePurchaseRequest extends AbstractRequest
 
     public function sendData($data)
     {
-        \Log::info('complete - data');
-
-        \Log::info(print_r($data,1));
         try {
             $service = new HostedService($data['config']);
 

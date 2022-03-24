@@ -3,7 +3,7 @@
 namespace Omnipay\Realex\Message;
 
 use Omnipay\Common\Message\AbstractRequest;
-use GlobalPayments\Api\ServicesConfig;
+use GlobalPayments\Api\ServiceConfigs\Gateways\GpEcomConfig;
 use GlobalPayments\Api\HostedPaymentConfig;
 use GlobalPayments\Api\Entities\Enums\HppVersion;
 use GlobalPayments\Api\Entities\Enums\AddressType;
@@ -13,6 +13,7 @@ use GlobalPayments\Api\Services\HostedService;
 use GlobalPayments\Api\Entities\HostedPaymentData;
 use GlobalPayments\Api\Entities\Address;
 use Omnipay\Realex\Traits\GatewayParameters;
+use GlobalPayments\Api\Entities\Enums\Secure3dVersion;
 
 class GenerateTokenRequest extends AbstractRequest
 {
@@ -25,10 +26,11 @@ class GenerateTokenRequest extends AbstractRequest
 
     public function getData()
     {
-        $config = new ServicesConfig();
+        $config = new GpEcomConfig();
         $config->merchantId = $this->getMerchantId();
         $config->accountId = $this->getAccount();
         $config->sharedSecret = $this->getSecret();
+        $config->secure3dVersion = Secure3dVersion::ONE;
         if ($this->getTestMode()) {
             $config->serviceUrl = $this->testEndpoint;
         } else {
@@ -37,7 +39,8 @@ class GenerateTokenRequest extends AbstractRequest
         
         $config->hostedPaymentConfig = new HostedPaymentConfig();
         $config->hostedPaymentConfig->version = HppVersion::VERSION_2;
-        $config->hostedPaymentConfig->cardStorageEnabled = "1";
+        $config->hostedPaymentConfig->cardStorageEnabled = true;
+        $config->hostedPaymentConfig->displaySavedCards = true;
 
         $hostedPaymentData = new HostedPaymentData();
         

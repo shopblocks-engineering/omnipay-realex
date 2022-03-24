@@ -17,6 +17,12 @@ class CaptureResponse extends AbstractRequest
     {
         return $this->data;
     }
+    
+    public function sendData($data)
+    {
+
+    }
+
 
     public function isRedirect()
     {
@@ -25,6 +31,6 @@ class CaptureResponse extends AbstractRequest
     }
     public function isSuccessful()
     {
-        return !isset($this->data['error']);
+        return $this->data->responseCode == '00';
     }
 }

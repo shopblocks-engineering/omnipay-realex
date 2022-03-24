@@ -3,7 +3,7 @@
 namespace Omnipay\Realex\Message;
 
 use Omnipay\Common\Message\AbstractRequest;
-use GlobalPayments\Api\ServicesConfig;
+use GlobalPayments\Api\ServiceConfigs\Gateways\GpEcomConfig;
 use GlobalPayments\Api\HostedPaymentConfig;
 use GlobalPayments\Api\Entities\Enums\HppVersion;
 use GlobalPayments\Api\Entities\Enums\AddressType;
@@ -25,7 +25,7 @@ class GenerateAuthorizeTokenRequest extends AbstractRequest
 
     public function getData()
     {
-        $config = new ServicesConfig();
+        $config = new GpEcomConfig();
         $config->merchantId = $this->getMerchantId();
         $config->accountId = $this->getAccount();
         $config->sharedSecret = $this->getSecret();
