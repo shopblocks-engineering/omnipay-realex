@@ -3,8 +3,9 @@
 namespace Omnipay\Realex\Message;
 
 use Omnipay\Common\Message\AbstractRequest;
+use Omnipay\Common\Message\ResponseInterface;
 
-class CompletePurchaseResponse extends AbstractRequest
+class CompletePurchaseResponse extends AbstractRequest implements ResponseInterface
 {
     private $data;
 
@@ -32,4 +33,17 @@ class CompletePurchaseResponse extends AbstractRequest
     {
         return $this->data->responseMessage;
     }
+    
+    public function isRedirect()
+    {
+        return false;
+    }
+    
+    public function getRequest() {}
+
+    public function isCancelled() {}
+
+    public function getCode() {}
+
+    public function getTransactionReference() {}
 }
