@@ -59,7 +59,7 @@ class CaptureRequest extends AbstractRequest
     
             $this->data = $response;
         } catch (ApiException $ex) {
-            throw new \Exception($ex->getMessage(), $ex->getCode());
+            throw $ex;
         }
             
         return $this->createResponse($this->data);

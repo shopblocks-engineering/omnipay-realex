@@ -99,7 +99,7 @@ class GenerateTokenRequest extends AbstractRequest
             
             $this->data = $hppJson;
         } catch (ApiException $ex) {
-            throw new \Exception($ex->getMessage(), $ex->getCode());
+            throw $ex;
         }
 
         return $this->createResponse($this->data);

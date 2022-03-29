@@ -93,7 +93,7 @@ class GenerateAuthorizeTokenRequest extends AbstractRequest
                 ->serialize();
             $this->data = $hppJson;
         } catch (ApiException $ex) {
-            throw new \Exception($ex->getMessage(), $ex->getCode());
+            throw $ex;
         }
 
         return $this->createResponse($this->data);
