@@ -62,7 +62,7 @@ class GenerateTokenRequest extends AbstractRequest
         $billingAddress->streetAddress3 = "";
         $billingAddress->city = $this->getBillingAddressCity();
         $billingAddress->postalCode = $this->getBillingAddressPostalCode();
-        $billingAddress->country = 826; //$this->getBillingAddressCountry();
+        $billingAddress->country = $this->getBillingAddressCountry(); //826
 
         $shippingAddress = new Address();
         $shippingAddress->streetAddress1 = $this->getShippingAddressStreet1();
@@ -70,7 +70,7 @@ class GenerateTokenRequest extends AbstractRequest
         $shippingAddress->streetAddress3 = "";
         $shippingAddress->city = $this->getShippingAddressCity();
         $shippingAddress->postalCode = $this->getShippingAddressPostalCode();
-        $shippingAddress->country = 826; //$this->getShippingAddressCountry();
+        $shippingAddress->country = $this->getShippingAddressCountry();
 
         $data['config'] = $config;
         $data['hosted_payment_data'] = $hostedPaymentData;
@@ -99,7 +99,7 @@ class GenerateTokenRequest extends AbstractRequest
             
             $this->data = $hppJson;
         } catch (ApiException $ex) {
-            dd($ex->getMessage());
+            throw new \Exception($ex->getMessage(), $ex->getCode());
         }
 
         return $this->createResponse($this->data);
