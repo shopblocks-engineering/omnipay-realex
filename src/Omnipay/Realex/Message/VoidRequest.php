@@ -3,33 +3,16 @@
 namespace Omnipay\Realex\Message;
 
 use Omnipay\Common\Message\AbstractRequest;
+use Omnipay\Realex\Traits\GatewayParameters;
 
 /**
  * Realex Void Request
  */
 class VoidRequest extends RemoteAbstractRequest
 {
+    use GatewayParameters;
+    
     protected $endpoint = 'https://epage.payandshop.com/epage-remote.cgi';
-
-    public function getTransactionReference()
-    {
-        return $this->getParameter('pasRef');
-    }
-
-    public function setTransactionReference($value)
-    {
-        return $this->setParameter('pasRef', $value);
-    }
-
-    public function getAuthCode()
-    {
-        return $this->getParameter('authCode');
-    }
-
-    public function setAuthCode($value)
-    {
-        return $this->setParameter('authCode', $value);
-    }
 
     /**
      * Get the XML registration string to be sent to the gateway

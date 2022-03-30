@@ -256,5 +256,36 @@ trait GatewayParameters
     public function setPaymentReference($value)
     {
         $this->setParameter('payment_reference', $value);
-    }  
+    }
+    
+    public function getTransactionReference()
+    {
+        return $this->getParameter('pasRef');
+    }
+
+    public function setTransactionReference($value)
+    {
+        return $this->setParameter('pasRef', $value);
+    }
+
+    public function getAuthCode()
+    {
+        return $this->getParameter('authCode');
+    }
+
+    public function setAuthCode($value)
+    {
+        return $this->setParameter('authCode', $value);
+    }
+    
+    public function getTransactionId()
+    {
+        return $this->getParameter('transactionId');
+    }
+
+    public function setTransactionId($value)
+    {
+        return $this->setParameter('transactionId', $value);
+    }
+
 }
