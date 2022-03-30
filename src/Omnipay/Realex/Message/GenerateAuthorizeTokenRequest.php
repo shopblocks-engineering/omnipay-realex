@@ -13,12 +13,11 @@ use GlobalPayments\Api\Services\HostedService;
 use GlobalPayments\Api\Entities\HostedPaymentData;
 use GlobalPayments\Api\Entities\Address;
 use Omnipay\Realex\Traits\GatewayParameters;
-use GlobalPayments\Api\Entities\Enums\Secure3dVersion;
 
-class GenerateTokenRequest extends AbstractRequest
+class GenerateAuthorizeTokenRequest extends AbstractRequest
 {
     use GatewayParameters;
-    
+
     protected $prodEndpoint = "https://pay.realexpayments.com/pay";
     protected $testEndpoint = "https://pay.sandbox.realexpayments.com/pay";
 
@@ -30,7 +29,6 @@ class GenerateTokenRequest extends AbstractRequest
         $config->merchantId = $this->getMerchantId();
         $config->accountId = $this->getAccount();
         $config->sharedSecret = $this->getSecret();
-        $config->secure3dVersion = Secure3dVersion::ONE;
         if ($this->getTestMode()) {
             $config->serviceUrl = $this->testEndpoint;
         } else {
@@ -39,8 +37,7 @@ class GenerateTokenRequest extends AbstractRequest
         
         $config->hostedPaymentConfig = new HostedPaymentConfig();
         $config->hostedPaymentConfig->version = HppVersion::VERSION_2;
-        $config->hostedPaymentConfig->cardStorageEnabled = true;
-        $config->hostedPaymentConfig->displaySavedCards = true;
+        $config->hostedPaymentConfig->cardStorageEnabled = "1";
 
         $hostedPaymentData = new HostedPaymentData();
         
@@ -62,7 +59,7 @@ class GenerateTokenRequest extends AbstractRequest
         $billingAddress->streetAddress3 = "";
         $billingAddress->city = $this->getBillingAddressCity();
         $billingAddress->postalCode = $this->getBillingAddressPostalCode();
-        $billingAddress->country = $this->getBillingAddressCountry(); //826
+        $billingAddress->country = $this->getBillingAddressCountry();
 
         $shippingAddress = new Address();
         $shippingAddress->streetAddress1 = $this->getShippingAddressStreet1();
@@ -77,17 +74,16 @@ class GenerateTokenRequest extends AbstractRequest
         $data['billing_address'] = $billingAddress;
         $data['shipping_address'] = $shippingAddress;
         $data['order_id'] = $this->getOrderId();
-
         $data['amount'] = $this->getAmount();
 
         return $data;
     }
 
     public function sendData($data)
-    {
+    {        
         try {
             $service = new HostedService($data['config']);
-            $hppJson = $service->charge($data['amount'])
+            $hppJson = $service->authorize($data['amount'])
                 ->withCurrency("GBP")
                 ->withAddress($data['billing_address'], AddressType::BILLING)
                 ->withAddress($data['shipping_address'], AddressType::SHIPPING)
@@ -95,8 +91,6 @@ class GenerateTokenRequest extends AbstractRequest
                 ->withHostedPaymentData($data['hosted_payment_data'])
                 ->withRecurringInfo(RecurringType::VARIABLE, RecurringSequence::FIRST)
                 ->serialize();
-                
-            
             $this->data = $hppJson;
         } catch (ApiException $ex) {
             throw $ex;
@@ -107,6 +101,6 @@ class GenerateTokenRequest extends AbstractRequest
 
     public function createResponse($data)
     {
-        return $this->response = new GenerateTokenResponse($data);
+        return $this->response = new GenerateAuthorizeTokenResponse($data);
     }
 }
