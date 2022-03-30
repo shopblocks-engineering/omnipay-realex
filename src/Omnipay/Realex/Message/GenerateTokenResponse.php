@@ -2,11 +2,12 @@
 
 namespace Omnipay\Realex\Message;
 
-use Omnipay\Common\Message\AbstractRequest;
+use Omnipay\Common\Message\AbstractResponse;
+use Omnipay\Common\Message\ResponseInterface;
 
-class GenerateTokenResponse extends AbstractRequest
+class GenerateTokenResponse extends AbstractResponse implements ResponseInterface
 {
-    private $data;
+    protected $data;
 
     public function __construct($data)
     {
@@ -16,11 +17,6 @@ class GenerateTokenResponse extends AbstractRequest
     public function getData()
     {
         return $this->data;
-    }
-
-    public function sendData($data)
-    {
-
     }
 
     public function isRedirect()
@@ -37,4 +33,14 @@ class GenerateTokenResponse extends AbstractRequest
     {
         return !isset($this->data['error']);
     }
+    
+    public function getRequest() {}
+
+    public function isCancelled() {}
+
+    public function getMessage() {}
+
+    public function getCode() {}
+
+    public function getTransactionReference() {}
 }
