@@ -77,7 +77,7 @@ class GenerateTokenRequest extends AbstractRequest
         $data['billing_address'] = $billingAddress;
         $data['shipping_address'] = $shippingAddress;
         $data['order_id'] = $this->getOrderId();
-
+        $data['currency'] = $this->getCurrency();
         $data['amount'] = $this->getAmount();
 
         return $data;
@@ -88,7 +88,7 @@ class GenerateTokenRequest extends AbstractRequest
         try {
             $service = new HostedService($data['config']);
             $hppJson = $service->charge($data['amount'])
-                ->withCurrency("GBP")
+                ->withCurrency($data['currency'] ?? "GBP")
                 ->withAddress($data['billing_address'], AddressType::BILLING)
                 ->withAddress($data['shipping_address'], AddressType::SHIPPING)
                 ->withOrderId($data['order_id'])
